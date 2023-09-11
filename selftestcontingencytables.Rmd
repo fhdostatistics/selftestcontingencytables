@@ -29,12 +29,12 @@ library(DescTools)
 knitr::opts_chunk$set(echo=F, error=F, message=FALSE, warning=FALSE)
 
 # Force a rendering to generate new data
-shiny_prerendered_clean("./Selbsttest.Rmd")
+shiny_prerendered_clean("./selftestcontingencytables.Rmd")
 ```
 
-# Contingency tables and correlation measures
+# Contingency Tables and Measures of Association
 
-The self-test allows you to check your knowledge of contingency tables as well as the two measures of association odds ratio and Pearson's corrected contingency coefficient. The test contains three automatically generated tasks that can be completed in any order and time. The entered results can be reset at any time (**Start over**) and the test can be regenerated (**RStudio: Run Document**).
+The self-test allows you to check your knowledge on contingency tables, odds ratios and Pearson's corrected contingency coefficient. The test contains three automatically generated tasks that can be completed in any order and time. The entered results can be reset at any time (**Start over**) and the test can be regenerated (**RStudio: Run Document**).
 
 ## Task 1
 
@@ -60,7 +60,7 @@ t_y <- margin.table(t, 2)
 t_or <- round(oddsratio(t, method = "wald")$measure[-1,1], digits = 3)
 ```
 
-In one study, `r n` patients, among them `r t_x[2]` smokers, were recorded. We counted `r t[2,2]` patients who smoke and have had a heart attack. However, `r t[1,2]` patients also suffered a heart attack without smoking. `r t_y[1]` patients did not suffer a heart attack. Of interest is a possible connection between smoking and a heart attack.
+In one study, `r n` patients, among them `r t_x[2]` smokers, were recorded. Between them there are `r t[2,2]` patients who smoke and have had a heart attack. However, `r t[1,2]` patients suffered a heart attack without smoking. `r t_y[1]` patients did not suffer a heart attack at all. Of interest is a possible connection between smoking and a heart attack.
 
 |                 | **Heart attack** | **No Heart attack** |  $\sum{}$  |
 |:---------------:|:------------:|:-------------------:|:----------:|
@@ -68,7 +68,7 @@ In one study, `r n` patients, among them `r t_x[2]` smokers, were recorded. We c
 | **Non-smokers** |  `r t[1,2]`  |        $?_2$        |   $?_3$    |
 |    $\sum{}$     |    $?_4$     |     `r t_y[1]`      |   `r n`    |
 
-**(a)** First complete the contingency table by indicating the values that are in the places with "$?_x$". Check your results with the entry in the text boxes.
+**(a)** First complete the contingency table by indicating the values that are in the places with "$?_x$". Check your results by entering them below. 
 
 ```{r KT1_1}
 # Question element: Task 1, Question 1
@@ -76,11 +76,11 @@ question_text(
   "Result of $?_1$:",
   answer(paste(t[2,1]), correct = T),
   allow_retry = T,
-  correct = "correct!",
+  correct = "Correct!",
   incorrect = "Unfortunately not correct",
   placeholder = "Enter answer here...",
-  submit_button = "Submit reply",
-  try_again_button = "try again"
+ submit_button = "Submit reply",
+  try_again_button = "Try again"
 )
 ```
 
@@ -90,11 +90,11 @@ question_text(
   "Result of $?_2$:",
   answer(paste(t[1,1]), correct = T),
   allow_retry = T,
-  correct = "correct!",
+  correct = "Correct!",
   incorrect = "Unfortunately not correct",
   placeholder = "Enter answer here...",
   submit_button = "Submit reply",
-  try_again_button = "try again"
+  try_again_button = "Try again"
 )
 ```
 
@@ -108,7 +108,7 @@ question_text(
   incorrect = "Unfortunately not correct",
   placeholder = "Enter answer here...",
   submit_button = "Submit reply",
-  try_again_button = "try again"
+  try_again_button = "Try again"
 )
 ```
 
@@ -118,11 +118,11 @@ question_text(
   "Result of $?_4$:",
   answer(paste(t_y[2]), correct = T),
   allow_retry = T,
-  correct = "correct!",
+  correct = "Correct!",
   incorrect = "Unfortunately not correct",
   placeholder = "Enter answer here...",
   submit_button = "Submit reply",
-  try_again_button = "try again"
+  try_again_button = "Try again"
 )
 ```
 
@@ -135,11 +135,11 @@ question_text(
   message = "Round to the third decimal place and use a dot as decimal separator.",
   answer(paste(t_or), correct = T),
   allow_retry = T,
-  correct = "correct!",
+  correct = "Correct!",
   incorrect = "Unfortunately not correct",
   placeholder = "Enter answer here...",
   submit_button = "Submit reply",
-  try_again_button = "try again"
+  try_again_button = "Try again"
 )
 ```
 
@@ -174,42 +174,42 @@ One study observed `r n` patients. Overweight (BMI $\geq$ 25, $<$ 30) and hypert
 ```{r KT2_1}
   # Question element: Task 2, Question 1
   question_text(
-  "How many patients are not overweight??",
+  "How many patients are not overweight?",
   answer(paste(t_x[1]), correct = T),
   allow_retry = T,
-  correct = "correct!",
+  correct = "Correct!",
   incorrect = "Unfortunately not correct",
   placeholder = "Enter answer here...",
   submit_button = "Submit reply",
-  try_again_button = "try again"
+  try_again_button = "Try again"
 )
 ```
 
 ```{r KT2_2}
 # Question element: Task 2, Question 2
 question_text(
-  "How many patients have hypertension but are not overweight??",
+  "How many patients have hypertension but are not overweight?",
   answer(paste(t[1,2]), correct = T),
   allow_retry = T,
-  correct = "correct!",
+  correct = "Correct!",
   incorrect = "Unfortunately not correct",
   placeholder = "Enter answer here...",
   submit_button = "Submit reply",
-  try_again_button = "try again"
+  try_again_button = "Try again"
 )
 ```
 
 ```{r KT2_3}
 # Question element: Task 2, Question 3
 question_text(
-  "How many patients in total do not have hypertension??",
+  "How many patients in total do not have hypertension?",
   answer(paste(t_y[1]), correct = T),
   allow_retry = T,
-  correct = "correct!",
+  correct = "Correct!",
   incorrect = "Unfortunately not correct",
   placeholder = "Enter answer here...",
   submit_button = "Submit reply",
-  try_again_button = "try again"
+  try_again_button = "Try again"
 )
 ```
 
@@ -222,11 +222,11 @@ question_text(
   message = "Round to the third decimal place and use a dot as the decimal separator.",
   answer(paste(t_cc), correct = T),
   allow_retry = T,
-  correct = "correct!",
+  correct = "Correct!",
   incorrect = "Unfortunately not correct",
   placeholder = "Enter answer here...",
   submit_button = "Submit reply",
-  try_again_button = "try again"
+  try_again_button = "Try again"
 )
 ```
 
@@ -240,10 +240,10 @@ question_radio(
   answer("strong correlation"),
   answer("complete correlation"),
   allow_retry = T,
-  correct = "correct!",
+  correct = "Correct!",
   incorrect = "Unfortunately not correct",
   submit_button = "Submit reply",
-  try_again_button = "try again"
+  try_again_button = "Try again"
 )
 ```
 
@@ -271,26 +271,26 @@ t_y <- margin.table(t, 2)
 t_or <- round(oddsratio(t, method = "wald")$measure[-1,1], digits = 3)
 ```
 
-In a study with `r n` patients:in suffering from a disease, the healing success (cured, not cured) after administration of a drug in low and high dosage (1 and 2 pills per day, respectively) was investigated. The results of the study were recorded in the following contingency table:
+In a study with `r n` patients suffering from a disease, the healing success (cured, not cured) after administration of a drug in low and high dosage (1 and 2 pills per day, respectively) was investigated. The results of the study were recorded in the following contingency table:
 
 |            | **not cured** | **cured**  |
 |:----------:|:-------------:|:----------:|
 | **1 pill** |  `r t[1,1]`   | `r t[1,2]` |
 | **2 pill** |  `r t[2,1]`   | `r t[2,2]` |
 
-**(a)** Determine the edge frequencies of the contingency table. Check your results with the entry in the text boxes.
+**(a)** Determine the marginal frequencies of the contingency table. Check your results by answering the following questions.
 
 ```{r KT3_1}
 # Question element: Task 3, Question 1
 question_text(
-  "How many patients have received the drug with the low dosage??",
+  "How many patients have received the drug with the low dosage?",
   answer(paste(t_x[1]), correct = T),
   allow_retry = T,
-  correct = "correct!",
+  correct = "Correct!",
   incorrect = "Unfortunately not correct",
   placeholder = "Enter answer here...",
   submit_button = "Submit reply",
-  try_again_button = "try again"
+  try_again_button = "Try again"
 )
 ```
 
@@ -300,25 +300,25 @@ question_text(
   "How many patients were given two pills per day?",
   answer(paste(t_x[2]), correct = T),
   allow_retry = T,
-  correct = "correct!",
+  correct = "Correct!",
   incorrect = "Unfortunately not correct",
   placeholder = "Enter answer here...",
   submit_button = "Submit reply",
-  try_again_button = "try again"
+  try_again_button = "Try again"
 )
 ```
 
 ```{r KT3_3}
 # Question element: Task 3, Question 3
 question_text(
-  "How many patients did the medication lead to a cure??",
+  "How many patients did the medication lead to a cure?",
   answer(paste(t_y[2]), correct = T),
   allow_retry = T,
-  correct = "correct!",
+  correct = "Correct!",
   incorrect = "Unfortunately not correct",
   placeholder = "Enter answer here...",
   submit_button = "Submit reply",
-  try_again_button = "try again"
+  try_again_button = "Try again"
 )
 ```
 
@@ -328,11 +328,11 @@ question_text(
   "How many patients have not been cured of their disease?",
   answer(paste(t_y[1]), correct = T),
   allow_retry = T,
-  correct = "correct!",
+  correct = "Correct!",
   incorrect = "Unfortunately not correct",
   placeholder = "Enter answer here...",
   submit_button = "Submit reply",
-  try_again_button = "try again"
+  try_again_button = "Try again"
 )
 ```
 
@@ -341,14 +341,14 @@ question_text(
 ```{r OR3}
 # Question element: Task 3, Question 5
 question_text(
-  "What is the chance of being cured among patients receiving a low dosage compared to patients receiving the higher dosage of the drug??",
+  "What is the chance of being cured among patients receiving a low dosage compared to patients receiving the higher dosage of the drug?",
   message = "Round to the third decimal place and use a period as the decimal separator.",
   answer(paste(t_or), correct = T),
   allow_retry = T,
-  correct = "correct!",
+  correct = "Correct!",
   incorrect = "Unfortunately not correct",
   placeholder = "Enter answer here...",
   submit_button = "Submit reply",
-  try_again_button = "try again"
+  try_again_button = "Try again"
 )
 ```
